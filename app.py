@@ -184,12 +184,23 @@ def main():
 
     #     st.info(result['output'])
     # search("what is metas thread product")
-    query = "What is the best way to learn pythonj?"
-    agent({"input": query})
+import streamlit as st
+
+def main():
+    st.set_page_config(page_title="AI research agent", page_icon=":bird:")
+
+    st.header("AI research agent :bird:")
+    query = st.text_input("Research goal")
+
+    if st.button('Submit'):
+        st.write("Doing research for ", query)
+
+        result = agent({"input": query})
+
+        st.text_area('Results:', value=result['output'], height=200)
 
 if __name__ == '__main__':
     main()
-
 # 5. Set this as an API endpoint via FastAPI
 app = FastAPI()
 
